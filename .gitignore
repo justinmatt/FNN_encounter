@@ -1,0 +1,4 @@
+# Ignore all CSV files in the project
+*.csv
+# Ignore all pyc files in the project
+*.pyc
