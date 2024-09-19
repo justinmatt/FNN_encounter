@@ -1,3 +1,0 @@
-The training inputs and labels goes in this folder
-
-
