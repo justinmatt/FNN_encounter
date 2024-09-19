@@ -45,7 +45,7 @@ parser = argparse.ArgumentParser(description='Process command line arguments')
 parser.add_argument('--inputs_X', type=str, default=None, help='Path to file containing input data (X)')
 parser.add_argument('--scaling_factor', type=str, default='./saved_models/rescale_factor/encounter_params_30-06_MAE_kpc_tanh_relu_split_ratio_0.1_rnd_state_10_layers_3_node_300_btch_size_512_lr_0.0001_epchs_10000.pkl', help='Path to rescaling factor')
 parser.add_argument('--saved_weight', type=str, default='./saved_weights/encounter_params_full_5Mdata__30-06_MAE_kpc_tanh_relu_split_ratio_0.1_rnd_state_10_layers_3_node_300_btch_size_512_lr_0.0001_epchs_10000.keras', help='Path to saved weights')
-parser.add_argument('--save', type=bool, default=True, help='Save the result to csv file if True')
+# parser.add_argument('--save', type=bool, default=True, help='Save the result to csv file if True')
 parser.add_argument('--ouput_file', type=str, default=None, help='Path to save predictions')
 # Parse the command line arguments
 args = parser.parse_args()
@@ -96,7 +96,7 @@ ypred_df = pd.DataFrame({
     'dph_vph_corr': ypred[:, 8]
 })
 
-if args.save:
+if args.ouput_file is not None:
     print('Saving results')
     ypred_df.to_csv(args.output_file)
 else:
