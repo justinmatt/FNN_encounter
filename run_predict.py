@@ -5,13 +5,12 @@ from tensorflow.keras.layers import Dense,Dropout, Input, Concatenate
 from tensorflow.keras.models import Model
 #from models.model import RegressionModel
 from preprocess.data_preprocessor import DataPreprocessor
-
+import os
 
 import numpy as np
 from tensorflow.keras.models import load_model
 
 import argparse 
-
 
 def create_neural_network(inputs, num_layers, num_nodes, activation_function, num_outputs):
     # Define the input
@@ -44,12 +43,12 @@ parser = argparse.ArgumentParser(description='Process command line arguments')
 # Add an argument for the saved weights
 parser.add_argument('--inputs_X', type=str, default=None, help='Path to file containing input data (X)')
 parser.add_argument('--scaling_factor', type=str, default='./saved_models/rescale_factor/encounter_params_30-06_MAE_kpc_tanh_relu_split_ratio_0.1_rnd_state_10_layers_3_node_300_btch_size_512_lr_0.0001_epchs_10000.pkl', help='Path to rescaling factor')
-parser.add_argument('--saved_weight', type=str, default='./saved_weights/encounter_params_full_5Mdata__30-06_MAE_kpc_tanh_relu_split_ratio_0.1_rnd_state_10_layers_3_node_300_btch_size_512_lr_0.0001_epchs_10000.keras', help='Path to saved weights')
+parser.add_argument('--saved_weight', type=str, default='./saved_models/encounter_params_full_5Mdata__30-06_MAE_kpc_tanh_relu_split_ratio_0.1_rnd_state_10_layers_3_node_300_btch_size_512_lr_0.0001_epchs_10000.h5', help='Path to saved weights')
 parser.add_argument('--ouput_file', type=str, default=None, help='Path to save predictions')
 # Parse the command line arguments
 args = parser.parse_args()
 #load data
-xtest = args.inputs_X
+xtest = pd.read_csv(args.inputs_X)
 
 xtest = xtest[['ra', 'dec', 'parallax', 'pmra', 'pmdec', 'radial_velocity',
        'parallax_error', 'pmra_error', 'pmdec_error', 'radial_velocity_error',
