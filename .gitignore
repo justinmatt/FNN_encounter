@@ -1,4 +1,4 @@
-# Ignore all CSV files in the project
+# Ignore all CSV files in the project data/test_data and data/train_data folder
 *.csv
 # Ignore all pyc files in the project
 *.pyc
